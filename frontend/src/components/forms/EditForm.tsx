@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import {EditFormProps} from "./models";
+import {EditFormProps} from "../Models";
 import axios from "axios";
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 

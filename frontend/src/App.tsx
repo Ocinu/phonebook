@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Container, Grid, Paper} from "@mui/material";
-import Contacts from "./components/contacts";
-import Search from "./components/search";
-import {ContactInterface} from "./components/models";
+import Contacts from "./components/Contacts";
+import Header from "./components/Header";
+import {ContactInterface} from "./components/Models";
 import axios from "axios";
-import EditForm from "./components/editForm";
+import EditForm from "./components/forms/EditForm";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import ContactDetails from "./components/contactDetails";
+import ContactDetails from "./components/ContactDetails";
+import {HeaderContext} from "./components/Context";
 
 function App() {
     const [contacts, setContacts] = useState<ContactInterface[]>([]);
@@ -51,18 +52,22 @@ function App() {
         },
     ]);
 
+    const contextValue = useMemo(() => ({search, setSearch, setContacts}), [search, setSearch, setContacts]);
+
 
     return (
         <Container>
             <Grid container>
                 <Grid item xs={12}>
                     <Paper style={{margin: '10px', padding: '10px'}}>
-                        <Search setSearch={setSearch} search={search} contacts={contacts} setContacts={setContacts}/>
+                        <HeaderContext.Provider value={contextValue}>
+                            <Header />
+                        </HeaderContext.Provider>
                     </Paper>
                 </Grid>
                 <Grid item xs={12}>
                     <Paper style={{margin: '10px'}}>
-                        <RouterProvider router={router} />
+                        <RouterProvider router={router}/>
                     </Paper>
                 </Grid>
             </Grid>

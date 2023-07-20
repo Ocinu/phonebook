@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContactInterface, ContactsProps} from "./models";
+import {ContactInterface, ContactsProps} from "./Models";
 import {
     Avatar, Box,
     IconButton,

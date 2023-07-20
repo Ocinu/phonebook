@@ -1,17 +1,15 @@
-import React, {useState} from "react";
-import TextField from '@mui/material/TextField';
-import {SearchProps} from "./models";
-import {Avatar, Grid, InputAdornment, Typography} from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
+import React, {useContext, useState} from "react";
+import {HeaderProps} from "./Models";
+import {Avatar, Grid, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import {deepOrange} from '@mui/material/colors';
-import Form from "./form";
+import CreateForm from "./forms/CreateForm";
+import Search from "./forms/Search";
+import {HeaderContext} from "./Context";
 
-const Search: React.FC<SearchProps> = ({setSearch, search, contacts, setContacts}) => {
+const Header: React.FC<HeaderProps> = () => {
     const [open, setOpen] = useState(false);
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-    };
+    const {setContacts} = useContext(HeaderContext);
 
     return (
         <Grid container
@@ -42,28 +40,13 @@ const Search: React.FC<SearchProps> = ({setSearch, search, contacts, setContacts
                   justifyContent="space-around"
                   alignItems="center"
             >
-                <TextField
-                    fullWidth
-                    id="search"
-                    label="Search"
-                    type="search"
-                    variant="filled"
-                    value={search}
-                    onChange={handleSearchChange}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <SearchIcon/>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
+                <Search/>
             </Grid>
             <Grid item xs="auto">
                 <Button variant="contained" color="primary" fullWidth onClick={() => setOpen(true)}>
                     Create contact
                 </Button>
-                <Form
+                <CreateForm
                     open={open}
                     onClose={() => setOpen(false)}
                     onAdd={(contact) => setContacts(prevContacts => [...prevContacts, contact])}
@@ -73,4 +56,4 @@ const Search: React.FC<SearchProps> = ({setSearch, search, contacts, setContacts
     );
 }
 
-export default Search;
+export default Header;

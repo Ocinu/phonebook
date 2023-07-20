@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import {FormProps} from "./models";
+import {FormProps} from "../Models";
 import axios from "axios";
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 
-const Form: React.FC<FormProps> = ({ open, onClose, onAdd }) => {
+const CreateForm: React.FC<FormProps> = ({ open, onClose, onAdd }) => {
   const [name, setName] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
 
@@ -37,4 +37,4 @@ const Form: React.FC<FormProps> = ({ open, onClose, onAdd }) => {
         </Dialog>
     );
 };
-export default Form;
+export default CreateForm;

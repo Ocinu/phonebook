@@ -1,11 +1,11 @@
 import React from "react";
 
-import {ContactDetailsProps} from "./models";
+import {ContactDetailsProps} from "./Models";
 import {useLoaderData} from "react-router-dom";
 import {Avatar, Box, Grid, Paper, Typography} from "@mui/material";
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import {getColorForName} from "./contacts";
+import {getColorForName} from "./Contacts";
 
 
 const ContactDetails: React.FC<ContactDetailsProps> = () => {

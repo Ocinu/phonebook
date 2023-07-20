@@ -1,5 +1,4 @@
 import React from "react";
-import ContactDetails from "./contactDetails";
 
 export interface ContactInterface {
     id?: string;
@@ -16,11 +15,7 @@ export interface ContactsProps {
 export interface ContactDetailsProps {
 }
 
-export interface SearchProps {
-    setSearch: React.Dispatch<React.SetStateAction<string>>;
-    search: string;
-    contacts: ContactInterface[];
-    setContacts: React.Dispatch<React.SetStateAction<ContactInterface[]>>;
+export interface HeaderProps {
 }
 
 export interface FormProps {
