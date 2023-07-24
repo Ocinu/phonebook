@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface ContactInterface {
     id?: string;
     name: string;
@@ -7,9 +5,7 @@ export interface ContactInterface {
 }
 
 export interface ContactsProps {
-    contacts: ContactInterface[];
-    setContacts: React.Dispatch<React.SetStateAction<ContactInterface[]>>;
-    onEdit: (contact: ContactInterface) => void;
+
 }
 
 export interface ContactDetailsProps {

@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import CreateForm from "./forms/CreateForm";
 import Search from "./forms/Search";
 import {HeaderContext} from "./Context";
+import {NavLink} from "react-router-dom";
 
 const Header: React.FC<HeaderProps> = () => {
     const [open, setOpen] = useState(false);
@@ -27,9 +28,9 @@ const Header: React.FC<HeaderProps> = () => {
                     </Grid>
                     <Grid item>
                         <Typography variant="h6" mb={0}>
-                            <a href={`http://localhost:3000/`} style={{textDecoration: 'none', color: 'inherit'}}>
+                            <NavLink to={`/`} style={{textDecoration: 'none', color: 'inherit'}}>
                                 Phonebook
-                            </a>
+                            </NavLink>
                         </Typography>
                     </Grid>
                 </Grid>

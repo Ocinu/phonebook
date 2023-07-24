@@ -7,8 +7,16 @@ export const HeaderContext = React.createContext<{
         setContacts: React.Dispatch<React.SetStateAction<ContactInterface[]>>;
     }>({
         search: '',
-        setSearch: () => {
-        },
-        setContacts: () => {
-        }
+        setSearch: () => {},
+        setContacts: () => {},
     });
+
+export const ContactsContext = React.createContext<{
+        contacts: ContactInterface[];
+        setContacts: React.Dispatch<React.SetStateAction<ContactInterface[]>>;
+        search: string;
+}>({
+        contacts: [],
+        setContacts: () => {},
+        search: '',
+});

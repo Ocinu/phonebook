@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {ContactInterface, ContactsProps} from "./Models";
 import {
     Avatar, Box,
@@ -16,6 +16,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {deepOrange, deepPurple, green, indigo, lightBlue} from "@mui/material/colors";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
+import {ContactsContext} from "./Context";
+import EditForm from "./forms/EditForm";
 
 
 export function getColorForName(name: string) {
@@ -26,10 +28,26 @@ export function getColorForName(name: string) {
     return colors[colorIndex];
 }
 
-const Contacts: React.FC<ContactsProps> = ({contacts, setContacts, onEdit}) => {
+const Contacts: React.FC<ContactsProps> = () => {
+    const {contacts, setContacts} = useContext(ContactsContext);
+    const {search} = useContext(ContactsContext);
+    const [editContact, setEditContact] = useState<ContactInterface | null>(null);
+
+    let filteredContacts = contacts;
+
+    if (search) {
+        filteredContacts = contacts.filter(contact =>
+            contact.name.toLowerCase().includes(search.toLowerCase())
+        );
+    }
     const handleEditContact = (contact: ContactInterface) => {
-        onEdit(contact);
+        setEditContact(contact);
     };
+
+    const handleUpdate = (updatedContact: ContactInterface) => {
+        setContacts(contacts.map(contact => contact.id === updatedContact.id ? updatedContact : contact));
+        setEditContact(null);
+    }
 
     const handleDeleteContact = (contact: ContactInterface) => {
         axios.delete(`http://localhost:8000/api/contacts/${contact.id}`)
@@ -40,7 +58,6 @@ const Contacts: React.FC<ContactsProps> = ({contacts, setContacts, onEdit}) => {
                 console.error('There was an error deleting the contact!', error);
             });
     };
-
 
     return (
         <Box>
@@ -57,7 +74,7 @@ const Contacts: React.FC<ContactsProps> = ({contacts, setContacts, onEdit}) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {contacts.map((contact) => (
+                        {filteredContacts.map((contact) => (
                             <TableRow
                                 key={contact.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
@@ -86,6 +103,9 @@ const Contacts: React.FC<ContactsProps> = ({contacts, setContacts, onEdit}) => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            {editContact &&
+                <EditForm contact={editContact} onUpdate={handleUpdate} onCancel={() => setEditContact(null)}/>
+            }
         </Box>
     );
 }

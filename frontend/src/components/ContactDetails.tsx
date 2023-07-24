@@ -1,6 +1,6 @@
 import React from "react";
 
-import {ContactDetailsProps} from "./Models";
+import {ContactDetailsProps, ContactInterface} from "./Models";
 import {useLoaderData} from "react-router-dom";
 import {Avatar, Box, Grid, Paper, Typography} from "@mui/material";
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
@@ -9,8 +9,7 @@ import {getColorForName} from "./Contacts";
 
 
 const ContactDetails: React.FC<ContactDetailsProps> = () => {
-    // @ts-ignore
-    const {contact} = useLoaderData()
+    const contact = useLoaderData() as ContactInterface;
 
     if (!contact) {
         return <Box>Loading...</Box>;
