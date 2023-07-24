@@ -14,7 +14,7 @@ const Search = () => {
         <TextField
             fullWidth
             id="search"
-            label="Header"
+            label="Search"
             type="search"
             variant="filled"
             value={search}

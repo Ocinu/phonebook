@@ -2,7 +2,6 @@ import React, {useContext, useState} from "react";
 import {HeaderProps} from "./Models";
 import {Avatar, Grid, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
-import {deepOrange} from '@mui/material/colors';
 import CreateForm from "./forms/CreateForm";
 import Search from "./forms/Search";
 import {HeaderContext} from "./Context";
@@ -24,10 +23,10 @@ const Header: React.FC<HeaderProps> = () => {
                       justifyContent="flex-start"
                       alignItems="center">
                     <Grid item>
-                        <Avatar sx={{bgcolor: deepOrange[500]}}>N</Avatar>
+                        <Avatar alt="Remy Sharp" src="/static/avatar.jpg" />
                     </Grid>
                     <Grid item>
-                        <Typography variant="h6" gutterBottom>
+                        <Typography variant="h6" mb={0}>
                             <a href={`http://localhost:3000/`} style={{textDecoration: 'none', color: 'inherit'}}>
                                 Phonebook
                             </a>

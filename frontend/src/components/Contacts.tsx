@@ -43,48 +43,50 @@ const Contacts: React.FC<ContactsProps> = ({contacts, setContacts, onEdit}) => {
 
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{minWidth: 650}} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Phone Number</TableCell>
-                        <TableCell align="right"></TableCell>
-                    </TableRow>
-                </TableHead>
-                <Typography m={2} variant="subtitle1" component="div" sx={{flexGrow: 1}}>
-                    CONTACTS ({contacts.length})
-                </Typography>
-                <TableBody>
-                    {contacts.map((contact) => (
-                        <TableRow
-                            key={contact.id}
-                            sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                        >
-                            <TableCell component="th" scope="row">
-                                <NavLink to={`/contact/${contact.id}`}
-                                         style={{textDecoration: 'none', color: 'inherit'}}>
-                                    <Box display="flex" alignItems="center">
-                                        <Avatar
-                                            sx={{bgcolor: getColorForName(contact.name)[500]}}>{contact.name.substring(0, 1).toUpperCase()}</Avatar>
-                                        <Box ml={1}>{contact.name}</Box>
-                                    </Box>
-                                </NavLink>
-                            </TableCell>
-                            <TableCell align="right">{contact.phone}</TableCell>
-                            <TableCell align="right">
-                                <IconButton aria-label="edit" onClick={() => handleEditContact(contact)}>
-                                    <EditIcon/>
-                                </IconButton>
-                                <IconButton aria-label="delete" onClick={() => handleDeleteContact(contact)}>
-                                    <DeleteIcon/>
-                                </IconButton>
-                            </TableCell>
+        <Box>
+            <Typography m={2} variant="subtitle1" component="div" sx={{flexGrow: 1}}>
+                CONTACTS ({contacts.length})
+            </Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{minWidth: 650}} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell align="right">Phone Number</TableCell>
+                            <TableCell align="right"></TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {contacts.map((contact) => (
+                            <TableRow
+                                key={contact.id}
+                                sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                            >
+                                <TableCell component="th" scope="row">
+                                    <NavLink to={`/contact/${contact.id}`}
+                                             style={{textDecoration: 'none', color: 'inherit'}}>
+                                        <Box display="flex" alignItems="center">
+                                            <Avatar
+                                                sx={{bgcolor: getColorForName(contact.name)[500]}}>{contact.name.substring(0, 1).toUpperCase()}</Avatar>
+                                            <Box ml={1}>{contact.name}</Box>
+                                        </Box>
+                                    </NavLink>
+                                </TableCell>
+                                <TableCell align="right">{contact.phone}</TableCell>
+                                <TableCell align="right">
+                                    <IconButton aria-label="edit" onClick={() => handleEditContact(contact)}>
+                                        <EditIcon/>
+                                    </IconButton>
+                                    <IconButton aria-label="delete" onClick={() => handleDeleteContact(contact)}>
+                                        <DeleteIcon/>
+                                    </IconButton>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Box>
     );
 }
 

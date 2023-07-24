@@ -12,6 +12,10 @@ const ContactDetails: React.FC<ContactDetailsProps> = () => {
     // @ts-ignore
     const {contact} = useLoaderData()
 
+    if (!contact) {
+        return <Box>Loading...</Box>;
+    }
+
     return (
         <Grid container>
             <Grid item xs={12}>
@@ -19,12 +23,12 @@ const ContactDetails: React.FC<ContactDetailsProps> = () => {
                     <Avatar
                         sx={{bgcolor: getColorForName(contact.name)[500], width: 256, height: 256}}
                     >
-                        <Typography variant="h1" gutterBottom>
+                        <Typography variant="h1" mb={0}>
                             {contact.name.substring(0, 1).toUpperCase()}
                         </Typography>
                     </Avatar>
                     <Box ml={5}>
-                        <Typography variant="h2" gutterBottom>
+                        <Typography variant="h2" mb={0}>
                             {contact.name}
                         </Typography>
                     </Box>
