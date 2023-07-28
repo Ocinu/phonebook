@@ -11,8 +11,8 @@
 		makemigrations \
 		static
 
-RUN_IN_DEVTOOLS_CONTAINER=docker-compose run --rm backend
-RUN_IN_DEVTOOLS_CONTAINER_PYTEST=docker-compose run --rm -e "TEST_RUNNER=pytest" backend
+RUN_IN_DEVTOOLS_CONTAINER=docker-compose run --rm -u `id -u`:`id -u` backend
+RUN_IN_DEVTOOLS_CONTAINER_PYTEST=docker-compose run --rm -u `id -u`:`id -u` -e "TEST_RUNNER=pytest" backend
 
 # target: all - Default target. Does nothing.
 all:
@@ -52,7 +52,7 @@ stop:
 
 # target: reload - restart api service.
 reload:
-	docker-compose restart api
+	docker-compose restart backend
 
 # target: bash - run bash in container
 bash:

@@ -1,22 +1,25 @@
-# Phonebook
-Example of fullstack application
+# Phonebook 
+### Full-stack Application Example
 
-This project based on Python `3.10+`, Django Rest Framework `4+`, React `18+`
+This project is based on the Python `3.10+`, Django Rest Framework `4+`, and React `18+`.
 
-### Getting Started
+## Getting Started
 
-Setup project with [docker-compose](https://docs.docker.com/compose/)  and [make](https://en.wikipedia.org/wiki/Make_(software)):
+1. Rename `.example.env` to `.env` and set up variables if needed.
 
-Build containers:
-```bash
-$ make build
-```
-Create tables in database:
-```bash
-$ make migrate
-```
-Run application:
-```bash
-$ make run
-```
-For more useful commands see `MakeFile`,
+2. Set up the project with `docker-compose` and `make`:
+
+   ```bash
+   # Build containers:
+   $ make build
+   ```
+   
+   ```bash
+    # Create tables in the database:
+    $ make migrate
+   ```
+
+   ```bash
+   # Run the application:
+   $ make run
+   ```
